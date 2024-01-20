@@ -7,7 +7,7 @@
 #include "io.h"
 #include <unistd.h>
 
-volatile int time;
+volatile int time=50000;
 volatile int addr = 0x00;
 volatile int val;
 
@@ -68,6 +68,7 @@ static void irqhandler_switch(void *context)
 int main()
 {
     alt_printf("Dans le main\n");
+    alt_printf("%x\n",time);
 
     IOWR_ALTERA_AVALON_PIO_IRQ_MASK(PUSH_BTN_BASE, 0b11);
     IOWR_ALTERA_AVALON_PIO_IRQ_MASK(SWITCH_BASE, 0b00001111);
